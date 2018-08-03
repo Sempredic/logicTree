@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class TreeManager {
     
     Node root;
+    ArrayList<Object> uID_Registry;
     
     public TreeManager(String data){
         root = new Node("Q1",data);
@@ -25,9 +26,9 @@ public class TreeManager {
     }
     
     public Node findNode(Node head,String name){
-        
-        Node temp = new Node();
 
+        Node tempNode = new Node();
+        
         if(head !=null){
             if(head.getName()!=name){
                 if(!head.getChildren().isEmpty()){
@@ -36,23 +37,31 @@ public class TreeManager {
                             if(node.getName()==name){
                                 return node;
                             }else{
-                               temp= findNode(node,name);  
+                               head= findNode(node,name); 
+                               if(head.getName()==name){
+                                   return head;
+                               }
                             }     
                         } 
                     }
-                }else{
-                    temp = head;
                 }
+            }else{
+                return head;
             }
         }
 
-        return temp;
+        return head;
     }
     
     public void addNode(Node c_Node,String name,String data){
-        Node n_Node = new Node(name,data);
-        c_Node.setChild(n_Node);
-        n_Node.setParent(c_Node);
+        if(c_Node != null){
+            Node n_Node = new Node(name,data);
+            c_Node.setChild(n_Node);
+            n_Node.setParent(c_Node);  
+        }else{
+            System.out.println("Node Null");
+        }
+        
     }
     
     public void displayTree(Node head){

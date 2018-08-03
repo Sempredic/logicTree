@@ -15,16 +15,24 @@ public class main {
         
         TreeManager TM = new TreeManager("Why Won't Unit Sync To Blancco?");
         
-        TM.addNode(TM.getRoot(),"Q1A1", "Is Unit A Phone?");
-        TM.addNode(TM.getRoot(),"Third", "Is Unit An iPod Touch?");
-        TM.addNode(TM.findNode(TM.getRoot(), "Third"),"Fourth", "This is the Fourth");
-        TM.addNode(TM.findNode(TM.getRoot(), "Fourth"),"Fifth", "This is the Fifth");
-        TM.addNode(TM.findNode(TM.getRoot(), "Second"),"2nd-First", "One");
-        TM.addNode(TM.findNode(TM.getRoot(), "Second"),"2nd-Second", "Two");
-        TM.addNode(TM.findNode(TM.getRoot(), "Second"),"2nd-Third", "Three");
-        TM.addNode(TM.findNode(TM.getRoot(), "Fifth"),"5th-First", "One");
+        TM.addNode(TM.getRoot(),"Q1A1", "What Is The Type of Unit?");
+        
+        TM.addNode(TM.findNode(TM.getRoot(), "Q1A1"),"Q2A1", "iPhone");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q1A1"),"Q2A2", "iPad");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q1A1"),"Q2A3", "iTouch");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q1A1"),"Q2A4", "iPod");
+        
+        TM.addNode(TM.findNode(TM.getRoot(), "Q2A3"),"Q3A1", "Is iTouch A Generation 5 16GB?");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q2A1"),"Q3A2", "iPhone Blah?");
+        
+        
+        TM.addNode(TM.findNode(TM.getRoot(), "Q3A1"),"Q4A1", "Yes");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q3A1"),"Q4A2", "No");
+        
+        TM.addNode(TM.findNode(TM.getRoot(), "Q3A2"),"Q4A3", "iPhone BLAH BLAH");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q3A2"),"Q4A3", "iPhone BLAH BLAH BLAH");
 
-        TM.displayTree(TM.getRoot());
+        TM.displayTree(TM.findNode(TM.getRoot(), "Q3A1"));
     }
     
 }
