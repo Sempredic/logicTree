@@ -27,8 +27,6 @@ public class TreeManager {
     
     public Node findNode(Node head,String name){
 
-        Node tempNode = new Node();
-        
         if(head !=null){
             if(head.getName()!=name){
                 if(!head.getChildren().isEmpty()){
