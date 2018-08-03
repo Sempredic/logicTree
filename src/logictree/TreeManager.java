@@ -17,8 +17,9 @@ public class TreeManager {
     ArrayList<Object> uID_Registry;
     
     public TreeManager(String data){
+        uID_Registry = new ArrayList<Object>();
         root = new Node("Q1",data);
-        
+        uID_Registry.add(root.getName());
     }
     
     public Node getRoot(){
@@ -53,9 +54,15 @@ public class TreeManager {
     
     public void addNode(Node c_Node,String name,String data){
         if(c_Node != null){
-            Node n_Node = new Node(name,data);
-            c_Node.setChild(n_Node);
-            n_Node.setParent(c_Node);  
+            if(!uID_Registry.contains(name)){
+                uID_Registry.add(name);
+                Node n_Node = new Node(name,data);
+                c_Node.setChild(n_Node);
+                n_Node.setParent(c_Node); 
+            }else{
+                System.out.println("Node Name Already Exists");
+            }
+            
         }else{
             System.out.println("Node Null");
         }

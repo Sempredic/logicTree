@@ -30,9 +30,9 @@ public class main {
         TM.addNode(TM.findNode(TM.getRoot(), "Q3A1"),"Q4A2", "No");
         
         TM.addNode(TM.findNode(TM.getRoot(), "Q3A2"),"Q4A3", "iPhone BLAH BLAH");
-        TM.addNode(TM.findNode(TM.getRoot(), "Q3A2"),"Q4A3", "iPhone BLAH BLAH BLAH");
+        TM.addNode(TM.findNode(TM.getRoot(), "Q3A2"),"Q4A4", "iPhone BLAH BLAH BLAH");
 
-        TM.displayTree(TM.findNode(TM.getRoot(), "Q3A1"));
+        TM.displayTree(TM.getRoot());
     }
     
 }
