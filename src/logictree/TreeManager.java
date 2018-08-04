@@ -13,12 +13,12 @@ import java.util.ArrayList;
  */
 public class TreeManager {
     
-    Node root;
-    ArrayList<Object> uID_Registry;
+    private Node root;
+    private ArrayList<Object> uID_Registry;
     
     public TreeManager(String data){
         uID_Registry = new ArrayList<Object>();
-        root = new Node("Q1",data);
+        root = new Node("N1",data);
         uID_Registry.add(root.getName());
     }
     
@@ -26,26 +26,36 @@ public class TreeManager {
         return this.root;
     }
     
+    public ArrayList<Object> getUIDRegistry(){
+        return uID_Registry;
+    }
+    
     public Node findNode(Node head,String name){
 
         if(head !=null){
-            if(head.getName()!=name){
+            if(head.getName()==name){
+                return head;
+            }else{
                 if(!head.getChildren().isEmpty()){
                     for(Node node:head.getChildren()){
-                        if(node !=null){
-                            if(node.getName()==name){
-                                return node;
-                            }else{
-                               head= findNode(node,name); 
-                               if(head.getName()==name){
-                                   return head;
+                        
+                        if(node.getName()==name){
+                            return node;
+                        }else{
+                           node= findNode(node,name); 
+                           if(node!=null){
+                               if(node.getName()==name){
+                                   return node;
+                               }else{
+                                   return null;
                                }
-                            }     
-                        } 
+                           } 
+                        }     
+                        
                     }
+                }else{
+                    return null;
                 }
-            }else{
-                return head;
             }
         }
 
@@ -70,9 +80,7 @@ public class TreeManager {
     }
     
     public void displayTree(Node head){
-        
-        Node temp = new Node();
-    
+
         if(head !=null){
             System.out.println("<" + head.getName() + ": " + head.getData() + ">");
             if(!head.getChildren().isEmpty()){
@@ -80,7 +88,6 @@ public class TreeManager {
                     if(node !=null){
                         System.out.print("(" + node.getName() + ": " + node.getData() + ")");          
                     }
-                    
                 }
                 
                 System.out.println();
