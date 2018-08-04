@@ -37,27 +37,26 @@ public class TreeManager {
                 return head;
             }else{
                 if(!head.getChildren().isEmpty()){
-                    for(Node node:head.getChildren()){
+                    for(Node child:head.getChildren()){
                         
-                        if(node.getName()==name){
-                            return node;
+                        if(child.getName()==name){
+                           head = child;
                         }else{
-                           node= findNode(node,name); 
-                           if(node!=null){
-                               if(node.getName()==name){
-                                   return node;
-                               }else{
-                                   return null;
+                           Node temp =findNode(child,name);   
+                           if(temp!=null){
+                               if(temp.getName()==name){
+                                   return temp;
                                }
-                           } 
-                        }     
-                        
+                           }
+                        }       
                     }
                 }else{
                     return null;
                 }
             }
         }
+        
+        
 
         return head;
     }

@@ -24,6 +24,9 @@ public class main {
         
         TM.addNode(TM.findNode(TM.getRoot(), "N1A3"),"N2Q1", "Is iTouch A Generation 5 16GB?");
         TM.addNode(TM.findNode(TM.getRoot(), "N1A1"),"N2Q2", "iPhone Blah?");
+        
+        TM.addNode(TM.findNode(TM.getRoot(), "N2Q1"),"N3Q1", "Yes");
+        TM.addNode(TM.findNode(TM.getRoot(), "N2Q1"),"N3Q2", "No");
 
 
         TM.displayTree(TM.getRoot());
