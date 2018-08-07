@@ -32,31 +32,34 @@ public class TreeManager {
     
     public Node findNode(Node head,String name){
 
+        if(head == null){
+            return null;
+        }
+
+        if(head.getName() == name){
+            return head;
+        }
+
         if(head !=null){
-            if(head.getName()==name){
-                return head;
-            }else{
-                if(!head.getChildren().isEmpty()){
-                    for(Node child:head.getChildren()){
-                        
-                        if(child.getName()==name){
-                           head = child;
+            if(head.getName()!=name){
+                if(!head.getChildren().isEmpty()){ 
+                    for(Node node:head.getChildren()){
+                        if(node.getName()==name){
+                            return node;
                         }else{
-                           Node temp =findNode(child,name);   
-                           if(temp!=null){
-                               if(temp.getName()==name){
-                                   return temp;
-                               }
-                           }
-                        }       
+                            head = findNode(node,name);
+                            if(head!=null){
+                                if(head.getName()==name){
+                                    return head;
+                                }
+                            }
+                        }           
                     }
                 }else{
-                    return null;
+                    head = null;
                 }
             }
         }
-        
-        
 
         return head;
     }
