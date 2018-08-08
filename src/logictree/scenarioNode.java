@@ -6,6 +6,7 @@
 package logictree;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -13,17 +14,20 @@ import java.util.ArrayList;
  */
 public class scenarioNode extends Node{
     
-    ArrayList<Object> elements;
+    LinkedHashMap<String,ArrayList> elements;
     String scenarioTemplate;
+    
     
     scenarioNode(String name,String data){
         super(name,data);
-        elements = new ArrayList<Object>();
+        elements = new LinkedHashMap<String,ArrayList>();
         scenarioTemplate = null;
     }
     
-    public void addElement(String element){
-        elements.add(element);
+    public void addElement(String regex,String element){
+        if(elements.containsKey(regex)){
+            elements.put(name, children);
+        }
     }
     
     public void setScenarioTemplate(String template){
