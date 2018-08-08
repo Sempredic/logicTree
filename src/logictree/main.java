@@ -26,11 +26,20 @@ public class main {
         TM.addNode(TM.findNode(TM.getRoot(), "N1A1"),"N2Q2", "iPhone Blah?");
         
         TM.addNode(TM.findNode(TM.getRoot(), "N2Q1"),"N3Q1", "Yes");
-        TM.addNode(TM.findNode(TM.getRoot(), "N2Q1"),"N3Q2", "No");
+        TM.addNode(TM.findNode(TM.getRoot(), "N2Q2"),"N3Q2", "No");
 
-
-        TM.displayTree(TM.getRoot());
-        System.out.println(TM.getUIDRegistry());
+        scenarioNode sn = new scenarioNode("Scenario","Data");
+        
+        sn.setScenarioTemplate("You have a unit in a ");
+        
+        
+        
+        for(String st:sn.randomizeElements()){
+            System.out.println(st);
+        }
+      
+//        TM.displayTree(TM.getRoot());
+//        System.out.println(TM.getUIDRegistry());
 
     }
     
