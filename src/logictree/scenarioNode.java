@@ -7,6 +7,8 @@ package logictree;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  *
@@ -14,19 +16,30 @@ import java.util.LinkedHashMap;
  */
 public class scenarioNode extends Node{
     
-    LinkedHashMap<String,ArrayList> elements;
+    LinkedHashMap<String,ArrayList> elementsMap;
+    ArrayList elements;
     String scenarioTemplate;
     
     
     scenarioNode(String name,String data){
         super(name,data);
-        elements = new LinkedHashMap<String,ArrayList>();
+        elementsMap = new LinkedHashMap<String,ArrayList>();
+        elements = new ArrayList();
         scenarioTemplate = null;
     }
     
-    public void addElement(String regex,String element){
-        if(elements.containsKey(regex)){
-            elements.put(name, children);
+    public void addElement(String key,String element){
+        if(elementsMap.containsKey(key)){
+            if(!elementsMap.get(key).contains(element)){
+                elementsMap.get(key).add(element);
+            }else{
+                System.out.println("Element Already Exists");
+            }    
+        }else{
+            ArrayList newList = new ArrayList();
+            newList.add(element);
+            elementsMap.put(key,newList);
+            elements.add(key);
         }
     }
     
@@ -34,16 +47,29 @@ public class scenarioNode extends Node{
         scenarioTemplate = template;
     }
     
-    public String[] randomizeElements(){
+    public void randomizeElements(){
  
-        StringBuilder builder = new StringBuilder();
-        String[] templateList = scenarioTemplate.split("\\*");
-        int numElements = templateList.length-1;
+        Random rand = new Random();
+        int numElements = elementsMap.size();
+        LinkedHashMap<Object,Object> randomList = new LinkedHashMap();
+
+        for(Object obj:elements){
+            if(elementsMap.containsKey(obj)){
+                int r = rand.nextInt(elementsMap.get(obj).size());
+                randomList.put(obj, elementsMap.get(obj).get(r));
+            }
+        }
         
-        System.out.println(numElements);
-        
-        
-        return templateList;
+        for(Map.Entry<Object,Object> ob:randomList.entrySet()){
+            if(scenarioTemplate.contains((String)ob.getKey())){
+                scenarioTemplate = scenarioTemplate.replaceAll((String)ob.getKey(), (String)ob.getValue());
+            }
+                    
+        }
+       
+  
+        System.out.println(scenarioTemplate);
+
     }
     
 }

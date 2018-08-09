@@ -30,14 +30,17 @@ public class main {
 
         scenarioNode sn = new scenarioNode("Scenario","Data");
         
-        sn.setScenarioTemplate("You have a unit in a ");
+        sn.setScenarioTemplate("You have an 'device' in a 'color' bag ");
+        sn.addElement("'color'", "WHITE");
+        sn.addElement("'color'", "BLUE");
+        sn.addElement("'color'", "RED");
+        sn.addElement("'color'", "YELLOW");
+        sn.addElement("'device'","IPHONE");
+        sn.addElement("'device'","IPAD");
+        sn.addElement("'device'","ITOUCH");
         
-        
-        
-        for(String st:sn.randomizeElements()){
-            System.out.println(st);
-        }
-      
+
+        sn.randomizeElements();
 //        TM.displayTree(TM.getRoot());
 //        System.out.println(TM.getUIDRegistry());
 
