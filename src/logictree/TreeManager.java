@@ -81,6 +81,20 @@ public class TreeManager {
         
     }
     
+    public void addNode(Node c_Node,Node n_Node){
+        if(c_Node != null && n_Node != null){
+            if(!uID_Registry.contains(n_Node.getName())){
+                uID_Registry.add(n_Node.getName());
+                c_Node.setChild(n_Node);
+                n_Node.setParent(c_Node); 
+            }else{
+                System.out.println("Node Name Already Exists");
+            }
+        }else{
+            System.out.println("Node Null");
+        }
+    }
+    
     public void displayTree(Node head){
 
         if(head !=null){

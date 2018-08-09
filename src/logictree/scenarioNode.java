@@ -33,7 +33,7 @@ public class scenarioNode extends Node{
             if(!elementsMap.get(key).contains(element)){
                 elementsMap.get(key).add(element);
             }else{
-                System.out.println("Element Already Exists");
+                System.out.println(element + " Already Exists");
             }    
         }else{
             ArrayList newList = new ArrayList();
@@ -45,6 +45,10 @@ public class scenarioNode extends Node{
     
     public void setScenarioTemplate(String template){
         scenarioTemplate = template;
+    }
+    
+    public String getScenario(){
+        return scenarioTemplate;
     }
     
     public void randomizeElements(){
@@ -63,12 +67,10 @@ public class scenarioNode extends Node{
         for(Map.Entry<Object,Object> ob:randomList.entrySet()){
             if(scenarioTemplate.contains((String)ob.getKey())){
                 scenarioTemplate = scenarioTemplate.replaceAll((String)ob.getKey(), (String)ob.getValue());
+                data = scenarioTemplate;
             }
                     
         }
-       
-  
-        System.out.println(scenarioTemplate);
 
     }
     
