@@ -47,6 +47,10 @@ public class scenarioNode extends Node{
         scenarioTemplate = template;
     }
     
+    public ArrayList getElements(){
+        return elements;
+    }
+    
     public String getScenario(){
         return scenarioTemplate;
     }

@@ -16,17 +16,6 @@ public class main {
         TreeManager TM = new TreeManager("Why Won't Unit Sync To Blancco?");
         
         TM.addNode(TM.getRoot(),"N1Q1", "What Is The Type of Unit?");
-        
-        TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),"N1A1", "iPhone");
-        TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),"N1A2", "iPad");
-        TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),"N1A3", "iTouch");
-        TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),"N1A4", "iPod");
-        
-        TM.addNode(TM.findNode(TM.getRoot(), "N1A3"),"N2Q1", "Is iTouch A Generation 5 16GB?");
-        TM.addNode(TM.findNode(TM.getRoot(), "N1A1"),"N2Q2", "iPhone Blah?");
-        
-        TM.addNode(TM.findNode(TM.getRoot(), "N2Q1"),"N3Q1", "Yes");
-        TM.addNode(TM.findNode(TM.getRoot(), "N2Q2"),"N3Q2", "No");
 
         scenarioNode sn = new scenarioNode("Scenario","Data");
         
@@ -34,19 +23,21 @@ public class main {
         sn.addElement("'color'", "WHITE");
         sn.addElement("'color'", "BLUE");
         sn.addElement("'color'", "RED");
+        sn.addElement("'color'", "YELLOW");
         sn.addElement("'device'","IPHONE");
         sn.addElement("'device'","IPAD");
         sn.addElement("'device'","ITOUCH");
         sn.addElement("'device'","IPOD SHUFFLE");
         sn.addElement("'device'","IPOD CLASSIC");
         sn.addElement("'device'","IPOD NANO");
+        sn.addElement("'device'","JOSE");
         sn.randomizeElements();
+        System.out.println(sn.getElements());
         
         TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),sn);
         TM.addNode(TM.findNode(TM.getRoot(), "Scenario"),"A1","YES");
         TM.addNode(TM.findNode(TM.getRoot(), "Scenario"),"A2","NO");
-        
-        System.out.println(sn.getScenario());
+
         TM.displayTree(TM.getRoot());
         System.out.println(TM.getUIDRegistry());
 
