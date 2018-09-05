@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -18,12 +20,14 @@ public class scenarioNode extends Node{
     
     LinkedHashMap<String,ArrayList> elementsMap;
     ArrayList elements;
+    ArrayList sentenceElements;
     String scenarioTemplate;
     
     
     scenarioNode(String name,String data){
         super(name,data);
         elementsMap = new LinkedHashMap<String,ArrayList>();
+        elements = new ArrayList();
         elements = new ArrayList();
         scenarioTemplate = null;
     }
@@ -46,6 +50,10 @@ public class scenarioNode extends Node{
         }
     }
     
+    public void addSentenceElement(String sentence){
+        
+    }
+    
     public void setScenarioTemplate(String template){
         
         //include element key in template as single quote marks, 'example'
@@ -57,6 +65,10 @@ public class scenarioNode extends Node{
         return elements;
     }
     
+    public LinkedHashMap<String,ArrayList>  getElementMap(){
+        return elementsMap;
+    }
+    
     public String getScenario(){
         return scenarioTemplate;
     }
@@ -66,23 +78,53 @@ public class scenarioNode extends Node{
         // 
         Random rand = new Random();
         int numElements = elementsMap.size();
+        LinkedHashMap<Object,Integer> wordOccurances = new LinkedHashMap<Object,Integer>();
         LinkedHashMap<Object,Object> randomList = new LinkedHashMap();
+        Pattern p;
+        Matcher m;
 
-        for(Object obj:elements){
-            if(elementsMap.containsKey(obj)){
-                int r = rand.nextInt(elementsMap.get(obj).size());
-                randomList.put(obj, elementsMap.get(obj).get(r));
+//        for(Object obj:elements){
+//            if(elementsMap.containsKey(obj)){
+//                int r = rand.nextInt(elementsMap.get(obj).size());
+//                randomList.put(obj, elementsMap.get(obj).get(r));
+//            }
+//        }
+        for(Object word:elements){
+            int occur = 0;
+            
+            p = Pattern.compile((String)word);
+            m = p.matcher(scenarioTemplate);
+            
+            while(m.find()){
+                occur++;
+            }
+            
+            wordOccurances.put(word, occur);
+            
+        }
+
+        for(Map.Entry<Object,Integer> entry:wordOccurances.entrySet()){
+            String key = (String)entry.getKey();
+            int value = entry.getValue();
+            int r =0;
+
+            for(int i=0;i<entry.getValue();i++){
+                
+                if(elementsMap.containsKey(key)){
+                    r = rand.nextInt(elementsMap.get(key).size());
+                }
+                
+                scenarioTemplate = scenarioTemplate.replaceFirst((String)entry.getKey(), (String)elementsMap.get(key).get(r));
             }
         }
-        
-        for(Map.Entry<Object,Object> ob:randomList.entrySet()){
-            if(scenarioTemplate.contains((String)ob.getKey())){
-                scenarioTemplate = scenarioTemplate.replaceAll((String)ob.getKey(), (String)ob.getValue());
-                data = scenarioTemplate;
-            }
-                    
-        }
 
+        data = scenarioTemplate;
+//        for(Map.Entry<Object,Object> ob:randomList.entrySet()){
+//            
+//            if(scenarioTemplate.contains((String)ob.getKey())){
+//                scenarioTemplate = scenarioTemplate.replaceAll((String)ob.getKey(), (String)ob.getValue());
+//                data = scenarioTemplate;
+//            }  
+//        }
     }
-    
 }

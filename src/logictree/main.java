@@ -19,7 +19,7 @@ public class main {
 
         scenarioNode sn = new scenarioNode("Scenario","Data");
         
-        sn.setScenarioTemplate("You have an 'device' in a 'color' bag. What grade is the unit?");
+        sn.setScenarioTemplate("You have an 'device' in a 'color' bag. What grade is the unit? 'sentence'. 'sentence'");
         sn.addElement("'color'", "WHITE");
         sn.addElement("'color'", "BLUE");
         sn.addElement("'color'", "RED");
@@ -31,8 +31,12 @@ public class main {
         sn.addElement("'device'","IPOD CLASSIC");
         sn.addElement("'device'","IPOD NANO");
         sn.addElement("'device'","JOSE");
+        sn.addElement("'sentence'", "This is a Sentence");
+        sn.addElement("'sentence'", "This is another Sentence");
+        sn.addElement("'sentence'", "This is again seriously the last Sentence");
         sn.randomizeElements();
         System.out.println(sn.getElements());
+        System.out.println(sn.getElementMap());
         
         TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),sn);
         TM.addNode(TM.findNode(TM.getRoot(), "Scenario"),"A1","YES");
