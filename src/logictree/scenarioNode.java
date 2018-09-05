@@ -29,6 +29,9 @@ public class scenarioNode extends Node{
     }
     
     public void addElement(String key,String element){
+        
+        // add element key as "'example'"
+        
         if(elementsMap.containsKey(key)){
             if(!elementsMap.get(key).contains(element)){
                 elementsMap.get(key).add(element);
@@ -44,6 +47,9 @@ public class scenarioNode extends Node{
     }
     
     public void setScenarioTemplate(String template){
+        
+        //include element key in template as single quote marks, 'example'
+        
         scenarioTemplate = template;
     }
     
@@ -57,6 +63,7 @@ public class scenarioNode extends Node{
     
     public void randomizeElements(){
  
+        // 
         Random rand = new Random();
         int numElements = elementsMap.size();
         LinkedHashMap<Object,Object> randomList = new LinkedHashMap();
