@@ -83,12 +83,6 @@ public class scenarioNode extends Node{
         Pattern p;
         Matcher m;
 
-//        for(Object obj:elements){
-//            if(elementsMap.containsKey(obj)){
-//                int r = rand.nextInt(elementsMap.get(obj).size());
-//                randomList.put(obj, elementsMap.get(obj).get(r));
-//            }
-//        }
         for(Object word:elements){
             int occur = 0;
             
@@ -119,12 +113,5 @@ public class scenarioNode extends Node{
         }
 
         data = scenarioTemplate;
-//        for(Map.Entry<Object,Object> ob:randomList.entrySet()){
-//            
-//            if(scenarioTemplate.contains((String)ob.getKey())){
-//                scenarioTemplate = scenarioTemplate.replaceAll((String)ob.getKey(), (String)ob.getValue());
-//                data = scenarioTemplate;
-//            }  
-//        }
     }
 }
