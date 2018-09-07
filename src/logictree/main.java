@@ -19,7 +19,7 @@ public class main {
 
         scenarioNode sn = new scenarioNode("Scenario","Data");
         
-        sn.setScenarioTemplate("You have an 'device' in a 'color' bag. What grade is the unit? 'sentence'. 'sentence' , 'color' 'device'");
+        sn.setScenarioTemplate("You have an 'device' in a 'color' bag. 'sentence'");
         sn.addElement("'color'", "WHITE");
         sn.addElement("'color'", "BLUE");
         sn.addElement("'color'", "RED");
@@ -27,9 +27,8 @@ public class main {
         sn.addElement("'device'","IPHONE");
         sn.addElement("'device'","IPAD");
         sn.addElement("'device'","ITOUCH");
-        sn.addElement("'sentence'", "This is a Sentence");
-        sn.addElement("'sentence'", "This is another Sentence");
-        sn.addElement("'sentence'", "This is again seriously the last Sentence");
+        sn.addElement("'sentence'", "What Grade is the Unit?");
+        sn.addElement("'sentence'", "Is This Color a Conversion?");
         sn.randomizeElements();
 
         
@@ -37,10 +36,6 @@ public class main {
         TM.addNode(TM.findNode("N1Q1"),"N2Q2","NO");
         TM.addNode(TM.findNode("N2Q1"),sn);
 
-        
-        
-        TM.removeNode(TM.findNode("N1Q1"));
-      
         TM.displayTree(TM.getRoot());
         
         System.out.println(TM.getUIDRegistry());

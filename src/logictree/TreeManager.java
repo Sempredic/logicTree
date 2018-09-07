@@ -16,7 +16,7 @@ public class TreeManager {
     
     private Node root;
     private ArrayList<Object> uID_Registry;
-    public Stack<Node> rNodes;
+    private Stack<Node> rNodes;
     
     public TreeManager(String data){
         uID_Registry = new ArrayList<Object>();
@@ -167,11 +167,10 @@ public class TreeManager {
                         Object n = rNodes.pop();
 
                         switch(type){
-
                             case "scenarioNode":
                                 scenarioNode sn = (scenarioNode)n;
                                 name = sn.getName();
-                                findNode(sn.getName()).getChildren().clear();
+                                sn.getChildren().clear();
                                 if(rNodes.isEmpty()){
                                     if(sn.getParent()!=null){
                                         if(!sn.getParent().getChildren().isEmpty()){
@@ -184,7 +183,7 @@ public class TreeManager {
                             case "Node":
                                 Node node = (Node)n;
                                 name = node.getName();
-                                findNode(node.getName()).getChildren().clear();
+                                node.getChildren().clear();
                                 if(rNodes.isEmpty()){
                                     if(node.getParent()!=null){
                                         if(!node.getParent().getChildren().isEmpty()){
