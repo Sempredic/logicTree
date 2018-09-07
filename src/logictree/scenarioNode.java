@@ -49,11 +49,7 @@ public class scenarioNode extends Node{
             elements.add(key);
         }
     }
-    
-    public void addSentenceElement(String sentence){
-        
-    }
-    
+
     public void setScenarioTemplate(String template){
         
         //include element key in template as single quote marks, 'example'

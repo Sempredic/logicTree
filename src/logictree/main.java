@@ -35,6 +35,8 @@ public class main {
         TM.addNode(TM.findNode("N1Q1"),"N2Q1","YES");
         TM.addNode(TM.findNode("N1Q1"),"N2Q2","NO");
         TM.addNode(TM.findNode("N2Q1"),sn);
+        TM.addNode(TM.findNode("Scenario"),"N3Q1","YES");
+        TM.addNode(TM.findNode("Scenario"),"N3Q2","NO");
 
         TM.displayTree(TM.getRoot());
         
