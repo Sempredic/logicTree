@@ -32,6 +32,10 @@ public class Node {
         this.data = data;
     }
     
+    public void setName(String name){
+        this.name = name;
+    }
+    
     public void setParent(Node parent){
         this.parent = parent;
     }
@@ -52,6 +56,9 @@ public class Node {
         return this.children;
     }
     
+    public Node getParent(){
+        return this.parent;
+    }
     
  
 }

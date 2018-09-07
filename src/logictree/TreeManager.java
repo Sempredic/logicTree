@@ -6,6 +6,7 @@
 package logictree;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  *
@@ -15,11 +16,13 @@ public class TreeManager {
     
     private Node root;
     private ArrayList<Object> uID_Registry;
+    public Stack<Node> rNodes;
     
     public TreeManager(String data){
         uID_Registry = new ArrayList<Object>();
         root = new Node("N1",data);
         uID_Registry.add(root.getName());
+        rNodes = new Stack<Node>();
     }
     
     public Node getRoot(){
@@ -31,6 +34,42 @@ public class TreeManager {
     }
     
     public Node findNode(Node head,String name){
+
+        if(head == null){
+            return null;
+        }
+
+        if(head.getName() == name){
+            return head;
+        }
+
+        if(head !=null){
+            if(head.getName()!=name){
+                if(!head.getChildren().isEmpty()){ 
+                    for(Node node:head.getChildren()){
+                        if(node.getName()==name){
+                            return node;
+                        }else{
+                            head = findNode(node,name);
+                            if(head!=null){
+                                if(head.getName()==name){
+                                    return head;
+                                }
+                            }
+                        }           
+                    }
+                }else{
+                    head = null;
+                }
+            }
+        }
+
+        return head;
+    }
+    
+    public Node findNode(String name){
+        
+        Node head = root;
 
         if(head == null){
             return null;
@@ -92,6 +131,78 @@ public class TreeManager {
             }
         }else{
             System.out.println("Node Null");
+        }
+    }
+    
+    public void removeNode(Node head){
+        
+        if(head!=null){
+            if(uID_Registry.contains(head.getName())){
+                String name = null;
+
+                if(head !=null){
+                    if(!rNodes.contains(head)){
+                        rNodes.push(head);
+                    }
+
+                    if(!head.getChildren().isEmpty()){
+                        for(Node node:head.getChildren()){
+                            if(node !=null){
+                                if(!rNodes.contains(node)){
+                                    rNodes.push(node);
+                                }
+                            }
+                        }
+
+                        for(Node node:head.getChildren()){
+                            removeNode(node);
+                        }     
+                    }  
+                }
+
+                if(head == rNodes.firstElement()){
+                    while(!rNodes.empty()){
+
+                        String type = rNodes.peek().getClass().getSimpleName();
+                        Object n = rNodes.pop();
+
+                        switch(type){
+
+                            case "scenarioNode":
+                                scenarioNode sn = (scenarioNode)n;
+                                name = sn.getName();
+                                findNode(sn.getName()).getChildren().clear();
+                                if(rNodes.isEmpty()){
+                                    if(sn.getParent()!=null){
+                                        if(!sn.getParent().getChildren().isEmpty()){
+                                            sn.getParent().getChildren().remove(sn);
+                                        }     
+                                    }
+                                }
+                                uID_Registry.remove(name);
+                                break;
+                            case "Node":
+                                Node node = (Node)n;
+                                name = node.getName();
+                                findNode(node.getName()).getChildren().clear();
+                                if(rNodes.isEmpty()){
+                                    if(node.getParent()!=null){
+                                        if(!node.getParent().getChildren().isEmpty()){
+                                            node.getParent().getChildren().remove(node);
+                                        }     
+                                    }
+                                }
+                                uID_Registry.remove(name);
+                                break;
+                        }
+
+                    }
+                }
+            }else{
+                System.out.println("Node Doesn't Exist");
+            }
+        }else{
+            System.out.println("Node Doesn't Exist");
         }
     }
     

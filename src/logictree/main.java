@@ -13,9 +13,9 @@ public class main {
     
     public static void main(String args[]){
         
-        TreeManager TM = new TreeManager("Why Won't Unit Sync To Blancco?");
+        TreeManager TM = new TreeManager("Welcome Node");
         
-        TM.addNode(TM.getRoot(),"N1Q1", "What Is The Type of Unit?");
+        TM.addNode(TM.getRoot(),"N1Q1", "Start Test?");
 
         scenarioNode sn = new scenarioNode("Scenario","Data");
         
@@ -32,12 +32,18 @@ public class main {
         sn.addElement("'sentence'", "This is again seriously the last Sentence");
         sn.randomizeElements();
 
-        TM.addNode(TM.findNode(TM.getRoot(), "N1Q1"),sn);
-        TM.addNode(TM.findNode(TM.getRoot(), "Scenario"),"A1","YES");
-        TM.addNode(TM.findNode(TM.getRoot(), "Scenario"),"A2","NO");
+        
+        TM.addNode(TM.findNode("N1Q1"),"N2Q1","YES");
+        TM.addNode(TM.findNode("N1Q1"),"N2Q2","NO");
+        TM.addNode(TM.findNode("N2Q1"),sn);
 
+        
+        
+        TM.removeNode(TM.findNode("N1Q1"));
+      
         TM.displayTree(TM.getRoot());
-        //System.out.println(TM.getUIDRegistry());
+        
+        System.out.println(TM.getUIDRegistry());
 
     }
     
