@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 public class Node {
     
-    String name;
+    private String name;
     
-    String data;
-    Node parent;
-    ArrayList<Node> children;
+    protected String data;
+    private Node parent;
+    private ArrayList<Node> children;
     
     public Node(){}
     

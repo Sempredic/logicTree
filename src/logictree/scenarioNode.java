@@ -73,9 +73,7 @@ public class scenarioNode extends Node{
  
         // 
         Random rand = new Random();
-        int numElements = elementsMap.size();
         LinkedHashMap<Object,Integer> wordOccurances = new LinkedHashMap<Object,Integer>();
-        LinkedHashMap<Object,Object> randomList = new LinkedHashMap();
         Pattern p;
         Matcher m;
 
@@ -95,7 +93,6 @@ public class scenarioNode extends Node{
 
         for(Map.Entry<Object,Integer> entry:wordOccurances.entrySet()){
             String key = (String)entry.getKey();
-            int value = entry.getValue();
             int r =0;
 
             for(int i=0;i<entry.getValue();i++){
